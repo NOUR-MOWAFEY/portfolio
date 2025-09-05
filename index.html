@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nouraldin Mowafey - Flutter Developer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #f1f5f9;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #f1f5f9;
+      transition: color 0.3s ease;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: #60a5fa;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .mobile-menu-btn span {
+      width: 25px;
+      height: 3px;
+      background: #f1f5f9;
+      margin: 3px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    .mobile-menu-btn.active span:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .mobile-menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-btn.active span:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: rgba(30, 41, 59, 0.98);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .mobile-nav.active {
+      display: block;
+      animation: slideDown 0.3s ease;
+    }
+
+    .mobile-nav ul {
+      list-style: none;
+      padding: 1rem 0;
+    }
+
+    .mobile-nav ul li {
+      text-align: center;
+      padding: 0.8rem 0;
+    }
+
+    .mobile-nav ul li a {
+      text-decoration: none;
+      color: #f1f5f9;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    .mobile-nav ul li a:hover {
+      color: #60a5fa;
+    }
+
+    main {
+      margin-top: 80px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      color: white;
+      padding: 100px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 1s ease;
+    }
+
+    .profile-img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 6px solid rgba(255, 255, 255, 0.15);
+      margin: 0 auto 2rem;
+      background: linear-gradient(45deg, #60a5fa, #3b82f6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: white;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+      overflow: hidden;
+    }
+
+
+    .profile-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* fills the circle */
+      object-position: center;
+      /* keeps your face centered */
+      border-radius: 50%;
+    }
+
+
+    .profile-img:hover {
+      transform: scale(1.05);
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero .subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .cta-button {
+      background: #60a5fa;
+      color: #0f172a;
+      padding: 15px 30px;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: bold;
+      display: inline-block;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      background: #3b82f6;
+    }
+
+    .section {
+      padding: 80px 0;
+      background: #1e293b;
+    }
+
+    .section:nth-child(even) {
+      background: #0f172a;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: #60a5fa;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      width: 80px;
+      height: 4px;
+      background: #3b82f6;
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .skills-grid,
+    .projects-grid,
+    .contact-info {
+      display: grid;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .projects-grid {
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+
+    .contact-info {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .skill-card,
+    .project-card,
+    .contact-card {
+      background: #0f172a;
+      color: #f1f5f9;
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .skill-card:hover,
+    .project-card:hover,
+    .contact-card:hover {
+      transform: translateY(-10px);
+      border-color: #3b82f6;
+    }
+
+    .skill-icon,
+    .contact-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(45deg, #3b82f6, #1e40af);
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+
+    }
+
+    .project-header {
+      border-radius: 15px;
+      background: linear-gradient(45deg, #3b82f6, #1e40af);
+      color: white;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+
+    .tech-tag {
+      background: #1e3a8a;
+      color: #93c5fd;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-top: 2rem;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      /* pushes content + tags apart */
+      height: 100%;
+      /* ensures equal height for all project cards */
+    }
+
+    .project-content {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+
+    }
+
+    .project-content p {
+      flex-grow: 1;
+      /* keeps description expandable */
+    }
+
+    .project-tech {
+      margin-top: auto;
+      /* sticks tags at the bottom */
+    }
+
+
+    footer {
+      background: #0f172a;
+      color: #94a3b8;
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: flex;
+      }
+
+      nav {
+        padding: 1rem;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+      }
+
+      .hero {
+        padding: 60px 0;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero .subtitle {
+        font-size: 1.1rem;
+      }
+
+      .profile-img {
+        width: 150px;
+        height: 150px;
+        font-size: 3rem;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      .container {
+        padding: 0 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="mobile-menu-btn" id="mobileMenuBtn">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="mobile-nav" id="mobileNav">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="profile-img">
+            <img src="profile.jpg" alt="Nouraldin Mowafey"
+              onerror="this.style.display='none'; this.parentElement.innerHTML='👨‍💻';">
+          </div>
+          <h1>Nouraldin Mowafey</h1>
+          <p class="subtitle">Flutter Developer & Computer Science Student</p>
+          <a href="#contact" class="cta-button">Hire Me for Your Project</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div style="max-width: 800px; margin: auto; text-align: center; font-size: 1.1rem; line-height: 1.8;">
+          <p>I'm a passionate Computer Science student and Flutter developer specializing in creating
+            beautiful, functional mobile applications. With expertise in Dart, Flutter, and modern state
+            management solutions, I help businesses and individuals bring their mobile app ideas to life.
+          </p>
+          <br>
+          <p>I focus on delivering high-quality, user-friendly applications with clean code and intuitive
+            interfaces. Whether you need a simple utility app or a complex business solution, I'm here to
+            turn your vision into reality.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <h2 class="section-title">My Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-card fade-in">
+            <div class="skill-icon">📱</div>
+            <h3>Flutter Development</h3>
+            <p>Expert in building cross-platform mobile applications with Flutter framework and Dart
+              programming language.</p>
+          </div>
+          <div class="skill-card fade-in">
+            <div class="skill-icon">⚡</div>
+            <h3>State Management</h3>
+            <p>Proficient in Cubit, BLoC, and Provider for efficient state management in Flutter
+              applications.</p>
+          </div>
+          <div class="skill-card fade-in">
+            <div class="skill-icon">🔥</div>
+            <h3>Firebase Integration</h3>
+            <p>Experience with Firebase services including Authentication, Firestore, and Cloud Functions.
+            </p>
+          </div>
+          <div class="skill-card fade-in">
+            <div class="skill-icon">🔌</div>
+            <h3>API Integration</h3>
+            <p>Skilled in consuming REST APIs and handling data from various web services and backends.</p>
+          </div>
+          <div class="skill-card fade-in">
+            <div class="skill-icon">🔧</div>
+            <h3>Version Control</h3>
+            <p>Proficient with Git and GitHub for code versioning and collaborative development.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card fade-in">
+            <div class="project-header">
+              <h3>📰 News App</h3>
+            </div>
+            <div class="project-content">
+              <p>A comprehensive news application that fetches data from external APIs and displays
+                articles with a clean, user-friendly interface. Features include category filtering,
+                search functionality, and offline reading capabilities.</p>
+              <div class="project-tech"><span class="tech-tag">Flutter</span><span class="tech-tag">Dart</span><span
+                  class="tech-tag">REST API</span><span class="tech-tag">State Management</span></div>
+            </div>
+          </div>
+          <div class="project-card fade-in">
+            <div class="project-header">
+              <h3>🌤️ Weather App</h3>
+            </div>
+            <div class="project-content">
+              <p>An elegant weather application that allows users to search for any country and get
+                real-time temperature and weather information. Features beautiful animations and
+                intuitive navigation.</p>
+              <div class="project-tech"><span class="tech-tag">Flutter</span><span class="tech-tag">Weather
+                  API</span><span class="tech-tag">Geolocation</span><span class="tech-tag">UI/UX</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="section-title">Let's Work Together</h2>
+        <p
+          style="text-align: center; font-size: 1.1rem; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+          Ready to bring your mobile app idea to life? I'm available for freelance projects and would love to discuss
+          how I can help you create an amazing mobile application.
+        </p>
+        <div class="contact-info">
+          <div class="contact-card fade-in">
+            <div class="contact-icon">✉️</div>
+            <h3>Email</h3>
+            <p><a href="mailto:nourmowafey82@gmail.com"
+                style="color: #3b82f6; text-decoration: none;">nourmowafey82@gmail.com</a></p>
+          </div>
+          <div class="contact-card fade-in">
+            <div class="contact-icon">💼</div>
+            <h3>LinkedIn</h3>
+            <p><a href="https://www.linkedin.com/in/nour-mowafey" target="_blank"
+                style="color: #3b82f6; text-decoration: none;">Connect with me</a></p>
+          </div>
+          <div class="contact-card fade-in">
+            <div class="contact-icon">💻</div>
+            <h3>GitHub</h3>
+            <p><a href="https://github.com/NOUR-MOWAFEY" target="_blank"
+                style="color: #3b82f6; text-decoration: none;">View my code</a></p>
+          </div>
+          <!-- 📞 New Phone Contact -->
+          <div class="contact-card fade-in">
+            <div class="contact-icon">📞</div>
+            <h3>Phone</h3>
+            <p><a href="tel:+201096338085" style="color: #3b82f6; text-decoration: none;">+20 109 633 8085</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Nouraldin Mowafey. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    mobileMenuBtn.addEventListener('click', () => { mobileMenuBtn.classList.toggle('active'); mobileNav.classList.toggle('active'); });
+    document.querySelectorAll('.mobile-nav a').forEach(link => { link.addEventListener('click', () => { mobileMenuBtn.classList.remove('active'); mobileNav.classList.remove('active'); }); });
+    document.addEventListener('click', (e) => { if (!mobileMenuBtn.contains(e.target) && !mobileNav.contains(e.target)) { mobileMenuBtn.classList.remove('active'); mobileNav.classList.remove('active'); } });
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function (e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('fade-in'); } }); }, observerOptions);
+    document.querySelectorAll('.skill-card, .project-card, .contact-card').forEach(el => { observer.observe(el); });
+  </script>
+</body>
+
+</html>

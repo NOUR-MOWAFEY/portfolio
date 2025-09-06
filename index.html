@@ -12,8 +12,6 @@
       box-sizing: border-box;
     }
 
-
-
     body {
       font-family: 'Arial', sans-serif;
       line-height: 1.6;
@@ -45,8 +43,6 @@
       align-items: center;
       padding: 1rem 2rem;
     }
-
-
 
     .nav-links {
       display: flex;
@@ -167,17 +163,13 @@
       overflow: hidden;
     }
 
-
     .profile-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      /* fills the circle */
       object-position: center;
-      /* keeps your face centered */
       border-radius: 50%;
     }
-
 
     .profile-img:hover {
       transform: scale(1.05);
@@ -292,7 +284,6 @@
       justify-content: center;
       font-size: 1.5rem;
       color: white;
-
     }
 
     .project-header {
@@ -303,12 +294,12 @@
       margin-bottom: 1rem;
     }
 
-      .project-tech {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-top: 1rem;
-      }
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
 
     .tech-tag {
       background: #1e3a8a;
@@ -324,28 +315,22 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      /* pushes content + tags apart */
       height: 100%;
-      /* ensures equal height for all project cards */
     }
 
     .project-content {
       display: flex;
       flex-direction: column;
       flex-grow: 1;
-
     }
 
     .project-content p {
       flex-grow: 1;
-      /* keeps description expandable */
     }
 
     .project-tech {
       margin-top: auto;
-      /* sticks tags at the bottom */
     }
-
 
     footer {
       background: #0f172a;
@@ -534,18 +519,29 @@
       <div class="container">
         <h2 class="section-title">Featured Projects</h2>
         <div class="projects-grid">
+
+          <!-- News App Card with GitHub Link -->
           <div class="project-card fade-in">
-            <div class="project-header">
-              <h3>📰 News App</h3>
-            </div>
-            <div class="project-content">
-              <p>A comprehensive news application that fetches data from external APIs and displays
-                articles with a clean, user-friendly interface. Features include category filtering,
-                search functionality, and offline reading capabilities.</p>
-              <div class="project-tech"><span class="tech-tag">Flutter</span><span class="tech-tag">Dart</span><span
-                  class="tech-tag">REST API</span><span class="tech-tag">State Management</span></div>
-            </div>
+            <a href="https://github.com/NOUR-MOWAFEY/Flutter/tree/main/news_app" target="_blank"
+              style="text-decoration: none; color: inherit;">
+              <div class="project-header">
+                <h3>📰 News App</h3>
+              </div>
+              <div class="project-content">
+                <p>A comprehensive news application that fetches data from external APIs and displays
+                  articles with a clean, user-friendly interface. Features include category filtering,
+                  search functionality, and offline reading capabilities.</p>
+                <div class="project-tech">
+                  <span class="tech-tag">Flutter</span>
+                  <span class="tech-tag">Dart</span>
+                  <span class="tech-tag">REST API</span>
+                  <span class="tech-tag">State Management</span>
+                </div>
+              </div>
+            </a>
           </div>
+
+          <!-- Weather App Card (still static for now) -->
           <div class="project-card fade-in">
             <div class="project-header">
               <h3>🌤️ Weather App</h3>
@@ -554,10 +550,15 @@
               <p>An elegant weather application that allows users to search for any country and get
                 real-time temperature and weather information. Features beautiful animations and
                 intuitive navigation.</p>
-              <div class="project-tech"><span class="tech-tag">Flutter</span><span class="tech-tag">Weather
-                  API</span><span class="tech-tag">Geolocation</span><span class="tech-tag">UI/UX</span></div>
+              <div class="project-tech">
+                <span class="tech-tag">Flutter</span>
+                <span class="tech-tag">Weather API</span>
+                <span class="tech-tag">Geolocation</span>
+                <span class="tech-tag">UI/UX</span>
+              </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -570,53 +571,66 @@
           Ready to bring your mobile app idea to life? I'm available for freelance projects and would love to discuss
           how I can help you create an amazing mobile application.
         </p>
+
         <div class="contact-info">
+
+          <!-- Phone Card -->
+          <div class="contact-card fade-in">
+            <div class="contact-icon">📞</div>
+            <h3>Phone</h3>
+            <p><a href="tel:+201096338085" style="color: #3b82f6; text-decoration: none;">+201096338085</a></p>
+          </div>
+
+          <!-- Email Card -->
           <div class="contact-card fade-in">
             <div class="contact-icon">✉️</div>
             <h3>Email</h3>
-            <p><a href="mailto:nourmowafey82@gmail.com"
-                style="color: #3b82f6; text-decoration: none;">nourmowafey82@gmail.com</a></p>
+            <p><a href="mailto:nourmowafey@gmail.com" style="color: #3b82f6; text-decoration: none;">nourmowafey@gmail.com</a></p>
           </div>
+
+        
+
+          <!-- GitHub Card -->
+          <div class="contact-card fade-in">
+            <div class="contact-icon">💻</div>
+            <h3>GitHub</h3>
+            <p><a href="https://github.com/NOUR-MOWAFEY" target="_blank"
+                style="color: #3b82f6; text-decoration: none;">Connect with me</a></p>
+          </div>
+
+          
           <div class="contact-card fade-in">
             <div class="contact-icon">💼</div>
             <h3>LinkedIn</h3>
             <p><a href="https://www.linkedin.com/in/nour-mowafey" target="_blank"
                 style="color: #3b82f6; text-decoration: none;">Connect with me</a></p>
           </div>
-          <div class="contact-card fade-in">
-            <div class="contact-icon">💻</div>
-            <h3>GitHub</h3>
-            <p><a href="https://github.com/NOUR-MOWAFEY" target="_blank"
-                style="color: #3b82f6; text-decoration: none;">View my code</a></p>
-          </div>
-          <!-- 📞 New Phone Contact -->
-          <div class="contact-card fade-in">
-            <div class="contact-icon">📞</div>
-            <h3>Phone</h3>
-            <p><a href="tel:+201096338085" style="color: #3b82f6; text-decoration: none;">+20 109 633 8085</a></p>
-          </div>
+
         </div>
       </div>
     </section>
-
   </main>
 
   <footer>
-    <div class="container">
-      <p>&copy; 2025 Nouraldin Mowafey. All rights reserved.</p>
-    </div>
+    <p>&copy; 2024 Nouraldin Mowafey. All rights reserved.</p>
   </footer>
 
   <script>
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileNav = document.getElementById('mobileNav');
-    mobileMenuBtn.addEventListener('click', () => { mobileMenuBtn.classList.toggle('active'); mobileNav.classList.toggle('active'); });
-    document.querySelectorAll('.mobile-nav a').forEach(link => { link.addEventListener('click', () => { mobileMenuBtn.classList.remove('active'); mobileNav.classList.remove('active'); }); });
-    document.addEventListener('click', (e) => { if (!mobileMenuBtn.contains(e.target) && !mobileNav.contains(e.target)) { mobileMenuBtn.classList.remove('active'); mobileNav.classList.remove('active'); } });
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function (e) { e.preventDefault(); const target = document.querySelector(this.getAttribute('href')); if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('fade-in'); } }); }, observerOptions);
-    document.querySelectorAll('.skill-card, .project-card, .contact-card').forEach(el => { observer.observe(el); });
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenuBtn.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+    });
+
+    // Close mobile menu on nav link click
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenuBtn.classList.remove('active');
+        mobileNav.classList.remove('active');
+      });
+    });
   </script>
 </body>
 
